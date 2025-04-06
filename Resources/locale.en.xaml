@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="1Player">1 Player</system:String>
+    <system:String x:Key="2Player">2 Player</system:String>
+    <system:String x:Key="Scores">Score</system:String>
+</ResourceDictionary>

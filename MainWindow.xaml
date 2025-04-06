@@ -1,0 +1,34 @@
+﻿<Window x:Class="XO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:XO.ViewModels"
+        xmlns:views="clr-namespace:XO.Views"
+        mc:Ignorable="d"
+        Title="Tic-Tac-Toe" MinHeight="480" MinWidth="768"
+        Style="{StaticResource MaterialDesignWindow}"
+        Background="{DynamicResource MaterialDesignPaper}">
+    <Grid>
+        <ContentControl Content="{Binding NavigationStore.CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:MainMenuViewModel}">
+                    <views:MainMenuView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
+                    <views:GameView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:ScoresViewModel}">
+                    <views:ScoreView />
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10"
+                Command="{Binding ChangeThemeCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                >
+            <Image Source="pack://application:,,,/XO;component/Resources/icons/light_theme_icon.png" />
+        </Button>
+    </Grid>
+</Window>

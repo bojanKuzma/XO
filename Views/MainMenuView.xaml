@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="XO.Views.MainMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <!-- Background (optional) -->
+      
+
+        <!-- Main Content -->
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Menu at the top -->
+            <Menu Grid.Row="0" HorizontalAlignment="Center">
+                <MenuItem Header="English" Command="{Binding ChangeLanguageCommand}" CommandParameter="en" />
+                <MenuItem Header="German" Command="{Binding ChangeLanguageCommand}" CommandParameter="de" />
+            </Menu>
+
+            <!-- Centered Content -->
+            <Grid Grid.Row="1" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                
+                <Button Grid.Row="0" Content="{DynamicResource 1Player}" Command="{Binding StartOnePlayerGameCommand}"
+                        Margin="10" VerticalAlignment="Stretch" />
+                <Button Grid.Row="1" Content="{DynamicResource 2Player}" Command="{Binding StartTwoPlayerGameCommand}"
+                        Margin="10" VerticalAlignment="Stretch" />
+                <Button Grid.Row="2" Content="{DynamicResource Scores}" Command="{Binding ShowScoresCommand}"
+                        Margin="10" VerticalAlignment="Stretch" />
+            </Grid>
+
+            <!-- Optional: Footer or additional content -->
+            <!-- <TextBlock Grid.Row="2" Text="Footer" HorizontalAlignment="Center" Margin="10"/> -->
+        </Grid>
+    </Grid>
+</UserControl>

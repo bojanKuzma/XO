@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="XO.Views.ScoreView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ListView ItemsSource="{Binding Scores}">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Header="Player" DisplayMemberBinding="{Binding PlayerName}" />
+                <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
+            </GridView>
+        </ListView.View>
+    </ListView>
+</UserControl>

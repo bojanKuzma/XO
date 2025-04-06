@@ -1,0 +1,250 @@
+﻿<UserControl x:Class="XO.Views.GameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:XO.Converters">
+
+    <UserControl.Resources>
+        <!-- Register Converters -->
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+        <converters:FontSizeConverter x:Key="FontSizeConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Name Input UI -->
+        <Grid VerticalAlignment="Center"
+              Visibility="{Binding IsNameInputVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="1" Text="Enter Player Names" FontSize="24" HorizontalAlignment="Center" Margin="10" />
+
+            <!-- Player 1 Name Input -->
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="Player1TextBox" Text="{Binding Player1Name, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="10" />
+                <TextBlock Text="Player 1 Name" Foreground="Gray" Margin="15,10,0,0" IsHitTestVisible="False"
+                           Visibility="{Binding Text, ElementName=Player1TextBox, Converter={StaticResource StringToVisibilityConverter}}" />
+            </Grid>
+
+            <!-- Player 2 Name Input -->
+            <Grid Grid.Column="1" Grid.Row="2">
+                <TextBox x:Name="Player2TextBox" Text="{Binding Player2Name, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="10"
+                         IsEnabled="{Binding IsSinglePlayer, Converter={StaticResource InverseBooleanConverter}}" />
+                <TextBlock Text="Player 2 Name" Foreground="Gray" Margin="15,10,0,0" IsHitTestVisible="False"
+                           Visibility="{Binding Text, ElementName=Player2TextBox, Converter={StaticResource StringToVisibilityConverter}}" />
+            </Grid>
+
+            <!-- Start Game Button -->
+            <Button Grid.Column="1" Grid.Row="3" Content="Start Game" Command="{Binding StartGameCommand}" Width="200"
+                    Margin="10" />
+
+        </Grid>
+
+        <!-- Game Board UI (to be shown after names are entered) -->
+        <Grid
+            Visibility="{Binding IsNameInputVisible, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverse}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+            <!-- Player 1 Name (Top-Left Cell) -->
+            <Grid>
+                <TextBlock
+                    Text="{Binding Player1Name}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                    FontWeight="Bold" />
+            </Grid>
+
+            <!-- Player 2 Name (Top-Right Cell) -->
+            <Grid Grid.Column="2">
+                <TextBlock
+                    Text="{Binding Player2Name}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                    FontWeight="Bold" />
+            </Grid>
+
+            <!-- Tic-Tac-Toe Board -->
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Buttons for the board cells -->
+                <Button Grid.Row="0" Grid.Column="0"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="0"
+                        Content="{Binding Board[0]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="1"
+                        Content="{Binding Board[1]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="0" Grid.Column="2"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="2"
+                        Content="{Binding Board[2]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="3"
+                        Content="{Binding Board[3]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="4"
+                        Content="{Binding Board[4]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="1" Grid.Column="2"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="5"
+                        Content="{Binding Board[5]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="2" Grid.Column="0"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="6"
+                        Content="{Binding Board[6]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="2" Grid.Column="1"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="7"
+                        Content="{Binding Board[7]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <Button Grid.Row="2" Grid.Column="2"
+                        Command="{Binding CellClickCommand}"
+                        CommandParameter="8"
+                        Content="{Binding Board[8]}"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Height="Auto"
+                        MinHeight="0"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!-- Reset Button -->
+                <Button Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Command="{Binding ResetCommand}"
+                        CommandParameter="0"
+                        Content="Reset"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                <!-- Give Up Button -->
+                <Button Grid.Column="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Command="{Binding GiveUpCommand}"
+                        CommandParameter="0"
+                        Content="Give up!"
+                        FontSize="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource FontSizeConverter}}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
