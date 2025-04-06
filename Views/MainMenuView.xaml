@@ -29,7 +29,7 @@
                 
                 
                 <Button Grid.Row="0" Content="{DynamicResource 1Player}" Command="{Binding StartOnePlayerGameCommand}"
-                        Margin="10" VerticalAlignment="Stretch" />
+                        Margin="10" VerticalAlignment="Stretch"/>
                 <Button Grid.Row="1" Content="{DynamicResource 2Player}" Command="{Binding StartTwoPlayerGameCommand}"
                         Margin="10" VerticalAlignment="Stretch" />
                 <Button Grid.Row="2" Content="{DynamicResource Scores}" Command="{Binding ShowScoresCommand}"

@@ -40,7 +40,6 @@ public partial class MainWindow : Window
             theme.SetBaseTheme(BaseTheme.Light);
             theme.SetPrimaryColor(SwatchHelper.Lookup[MaterialDesignColor.Orange]);
             theme.SetSecondaryColor(SwatchHelper.Lookup[MaterialDesignColor.DeepOrange]);
-        
 
             if (parameter is Button button)
             {
@@ -51,12 +50,11 @@ public partial class MainWindow : Window
         }
         else
         {
-            // Switch to Dark theme with Green/Teal
             theme.SetBaseTheme(BaseTheme.Dark);
             theme.SetPrimaryColor(SwatchHelper.Lookup[MaterialDesignColor.Green]);
             theme.SetSecondaryColor(SwatchHelper.Lookup[MaterialDesignColor.Teal]);
-        
-            // Update button icon
+            theme.SecondaryMid = new ColorPair(System.Windows.Media.Colors.White, System.Windows.Media.Colors.Black);
+            
             if (parameter is Button button)
             {
                 button.Content = new Image { 

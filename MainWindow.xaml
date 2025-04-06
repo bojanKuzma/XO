@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:XO.ViewModels"
         xmlns:views="clr-namespace:XO.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Tic-Tac-Toe" MinHeight="480" MinWidth="768"
         Style="{StaticResource MaterialDesignWindow}"
@@ -30,5 +31,7 @@
                 >
             <Image Source="pack://application:,,,/XO;component/Resources/icons/light_theme_icon.png" />
         </Button>
+        <materialDesign:DialogHost Identifier="RootDialog">
+        </materialDesign:DialogHost>
     </Grid>
 </Window>
