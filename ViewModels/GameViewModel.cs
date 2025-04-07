@@ -19,8 +19,9 @@ public class GameViewModel : BaseViewModel
     private string _player2Name;
     private bool _isSinglePlayer;
 
-    public GameViewModel(bool isSinglePlayer, NavigationStore navigationStore)
+    public GameViewModel(bool isSinglePlayer, NavigationStore navigationStore, LanguageStore languageStore)
     {
+        _languageStore = languageStore;
         _navigationStore = navigationStore;
         _isSinglePlayer = isSinglePlayer;
         Player1Name = string.Empty;
@@ -35,6 +36,7 @@ public class GameViewModel : BaseViewModel
     
     private bool _isCelebrating;
     private string _winnerMessage;
+    private readonly LanguageStore _languageStore;
 
     public bool IsCelebrating
     {
@@ -255,8 +257,26 @@ public class GameViewModel : BaseViewModel
         {
             return;
         }
-        var message = winner == "Draw" ? "It's a draw!" : $"Player {winner} wins!";
-        WinnerMessage = message;
+
+        if (_languageStore.CurrentLanguage == "en")
+        {
+            WinnerMessage = winner switch
+            {
+                "X" => $"{Player1Name} wins!",
+                "O" => $"{Player2Name} wins!",
+                _ => "It's a draw!"
+            };
+        }
+        else
+        {
+            WinnerMessage = winner switch
+            {
+                "X" => $"{Player1Name} gewinnt!",
+                "O" => $"{Player2Name} gewinnt!",
+                _ => "Unentschieden!"
+            };
+        }
+        
             
         // Start celebration
         IsCelebrating = true;
@@ -269,7 +289,7 @@ public class GameViewModel : BaseViewModel
 
         dialogContent.Children.Add(new TextBlock
         {
-            Text = message,
+            Text = WinnerMessage,
             TextWrapping = TextWrapping.Wrap,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center
@@ -277,7 +297,7 @@ public class GameViewModel : BaseViewModel
 
         var closeButton = new Button
         {
-            Content = "Close",
+            Content = _languageStore.CurrentLanguage == "en" ? "Close" : "Schließen",
             Margin = new Thickness(0, 20, 0, 0),
             HorizontalAlignment = HorizontalAlignment.Center
         };
@@ -304,7 +324,7 @@ public class GameViewModel : BaseViewModel
 
     private void GiveUp()
     {
-        _navigationStore.CurrentViewModel = new MainMenuViewModel(_navigationStore);
+        _navigationStore.CurrentViewModel = new MainMenuViewModel(_navigationStore, _languageStore);
     }
 
     private void Reset()

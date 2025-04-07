@@ -3,5 +3,11 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="1Player">1 Spieler</system:String>
     <system:String x:Key="2Player">2 Spieler</system:String>
-    <system:String x:Key="Scores">Score</system:String>
+    <system:String x:Key="Statistics">Statistiken</system:String>
+    <system:String x:Key="GiveUp">Aufgeben</system:String>
+    <system:String x:Key="Reset">Zurücksetzen</system:String>
+    <system:String x:Key="EnterPlayerName">Spielernamen eingeben</system:String>
+    <system:String x:Key="Player1Name">Name von Spieler 1</system:String>
+    <system:String x:Key="Player2Name">Name von Spieler 2</system:String>
+    <system:String x:Key="StartGame">Spiel starten</system:String>
 </ResourceDictionary>

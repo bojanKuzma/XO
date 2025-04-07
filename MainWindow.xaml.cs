@@ -15,13 +15,16 @@ namespace XO;
 public partial class MainWindow : Window
 {
     private NavigationStore _navigationStore;
-    
+    private readonly LanguageStore _languageStore;
+
+
     public MainWindow()
     {
         
         _navigationStore = new NavigationStore();
+        _languageStore = new LanguageStore();
         InitializeComponent();
-        _navigationStore.CurrentViewModel = new MainMenuViewModel(_navigationStore);
+        _navigationStore.CurrentViewModel = new MainMenuViewModel(_navigationStore, _languageStore);
         DataContext = new
         {
             NavigationStore = _navigationStore,
@@ -64,5 +67,44 @@ public partial class MainWindow : Window
         }
 
         paletteHelper.SetTheme(theme);
+    }
+    
+    private void UpdateResourceDictionary(string resourcePath, Func<ResourceDictionary, bool> condition)
+    {
+        var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+        
+        for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
+        {
+            var dict = mergedDictionaries[i];
+            if (condition(dict))
+            {
+                mergedDictionaries.RemoveAt(i);
+            }
+        }
+        
+        var resourceUri = new Uri(resourcePath, UriKind.Relative);
+        var resourceDict = new ResourceDictionary { Source = resourceUri };
+        mergedDictionaries.Add(resourceDict);
+    }
+
+    private void ChangeLanguage(string languageCode)
+    {
+       
+        bool IsLanguageDictionary(ResourceDictionary dict) => 
+            dict.Source != null && dict.Source.ToString().Contains("Resources/");
+        UpdateResourceDictionary($"Resources/locale.{languageCode}.xaml", IsLanguageDictionary);
+    }
+    
+    private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (sender is ComboBox comboBox)
+        {
+            if (comboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string languageCode = selectedItem.Tag.ToString();
+                _languageStore.CurrentLanguage = languageCode;
+                ChangeLanguage(languageCode);
+            }
+        }
     }
 }

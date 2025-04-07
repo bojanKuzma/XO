@@ -8,16 +8,12 @@
         <!-- Main Content -->
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <!-- Menu at the top -->
-            <Menu Grid.Row="0" HorizontalAlignment="Center">
-                <MenuItem Header="English" Command="{Binding ChangeLanguageCommand}" CommandParameter="en" />
-                <MenuItem Header="German" Command="{Binding ChangeLanguageCommand}" CommandParameter="de" />
-            </Menu>
+            
+          
 
             <!-- Centered Content -->
             <Grid Grid.Row="1" VerticalAlignment="Stretch">
@@ -29,11 +25,24 @@
                 
                 
                 <Button Grid.Row="0" Content="{DynamicResource 1Player}" Command="{Binding StartOnePlayerGameCommand}"
-                        Margin="10" VerticalAlignment="Stretch"/>
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Margin="10" VerticalAlignment="Stretch" MaxWidth="600" MinHeight="100" MaxHeight="100"/>
                 <Button Grid.Row="1" Content="{DynamicResource 2Player}" Command="{Binding StartTwoPlayerGameCommand}"
-                        Margin="10" VerticalAlignment="Stretch" />
-                <Button Grid.Row="2" Content="{DynamicResource Scores}" Command="{Binding ShowScoresCommand}"
-                        Margin="10" VerticalAlignment="Stretch" />
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Margin="10" VerticalAlignment="Stretch" MaxWidth="600" MinHeight="100"/>
+                <Button Grid.Row="2" Content="{DynamicResource Statistics}" 
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Command="{Binding ShowScoresCommand}"
+                        Margin="10" VerticalAlignment="Stretch" MaxWidth="600" MinHeight="100"/>
             </Grid>
 
             <!-- Optional: Footer or additional content -->

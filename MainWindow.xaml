@@ -31,6 +31,13 @@
                 >
             <Image Source="pack://application:,,,/XO;component/Resources/icons/light_theme_icon.png" />
         </Button>
+        <ComboBox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="40"
+                  SelectionChanged="ComboBox_SelectionChanged"
+                  SelectedIndex="1" Margin="10" FontWeight="Bold">
+            <ComboBoxItem Content="DE" Tag="de" />
+            <ComboBoxItem Content="EN" Tag="en" />
+           
+        </ComboBox>
         <materialDesign:DialogHost Identifier="RootDialog">
         </materialDesign:DialogHost>
     </Grid>

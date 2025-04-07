@@ -33,7 +33,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="1" Text="Enter Player Names" FontSize="24" HorizontalAlignment="Center" Margin="10" />
+            <TextBlock Grid.Column="1" Text="{DynamicResource EnterPlayerName}" FontSize="24" HorizontalAlignment="Center" Margin="10" />
 
             <!-- Player 1 Name Input -->
             <Grid Grid.Column="1" Grid.Row="1">
@@ -42,7 +42,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="Player1TextBox" Text="{Binding Player1Name, UpdateSourceTrigger=PropertyChanged}"
                          Margin="10" />
-                <TextBlock Text="Player 1 Name" Foreground="Gray" Margin="15,10,0,0" IsHitTestVisible="False"
+                <TextBlock Text="{DynamicResource Player1Name}" Foreground="Gray" Margin="15,10,0,0" IsHitTestVisible="False"
                            Visibility="{Binding Text, ElementName=Player1TextBox, Converter={StaticResource StringToVisibilityConverter}}" />
             </Grid>
 
@@ -51,12 +51,13 @@
                 <TextBox x:Name="Player2TextBox" Text="{Binding Player2Name, UpdateSourceTrigger=PropertyChanged}"
                          Margin="10"
                          IsEnabled="{Binding IsSinglePlayer, Converter={StaticResource InverseBooleanConverter}}" />
-                <TextBlock Text="Player 2 Name" Foreground="Gray" Margin="15,10,0,0" IsHitTestVisible="False"
+                <TextBlock Foreground="Gray" Margin="15,10,0,0" IsHitTestVisible="False"
+                           Text="{DynamicResource Player2Name}"
                            Visibility="{Binding Text, ElementName=Player2TextBox, Converter={StaticResource StringToVisibilityConverter}}" />
             </Grid>
 
             <!-- Start Game Button -->
-            <Button Grid.Column="1" Grid.Row="3" Content="Start Game" Command="{Binding StartGameCommand}" Width="200"
+            <Button Grid.Column="1" Grid.Row="3" Content="{DynamicResource StartGame}" Command="{Binding StartGameCommand}" Width="200"
                     Margin="10" />
 
         </Grid>
@@ -70,6 +71,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="3*" />
@@ -78,9 +80,9 @@
             </Grid.RowDefinitions>
 
             <!-- Player 1 Name (Top-Left Cell) -->
-            <Grid>
+            <Grid Grid.Row="1">
                 <TextBlock
-                    Text="{Binding Player1Name}"
+                    Text="{Binding Player1Name, StringFormat='{}{0} (X)'}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -88,9 +90,9 @@
             </Grid>
 
             <!-- Player 2 Name (Top-Right Cell) -->
-            <Grid Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="2">
                 <TextBlock
-                    Text="{Binding Player2Name}"
+                    Text="{Binding Player2Name, StringFormat='{}{0} (O)'}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -98,7 +100,7 @@
             </Grid>
 
             <!-- Tic-Tac-Toe Board -->
-            <Grid Grid.Column="1" Grid.Row="2">
+            <Grid Grid.Column="1" Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -226,7 +228,7 @@
                         Style="{StaticResource MaterialDesignRaisedButton}" />
             </Grid>
 
-            <Grid Grid.Row="4" Grid.Column="1">
+            <Grid Grid.Row="5" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="2*" />
@@ -238,7 +240,7 @@
                         VerticalAlignment="Stretch"
                         Command="{Binding ResetCommand}"
                         CommandParameter="0"
-                        Content="Reset"
+                        Content="{DynamicResource Reset}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource FontSizeConverter}}"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -250,7 +252,7 @@
                         VerticalAlignment="Stretch"
                         Command="{Binding GiveUpCommand}"
                         CommandParameter="0"
-                        Content="Give up!"
+                        Content="{DynamicResource GiveUp}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource FontSizeConverter}}"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
