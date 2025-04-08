@@ -1,12 +1,62 @@
 ﻿<UserControl x:Class="XO.Views.ScoreView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ListView ItemsSource="{Binding Scores}">
-        <ListView.View>
-            <GridView>
-                <GridViewColumn Header="Player" DisplayMemberBinding="{Binding PlayerName}" />
-                <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
-            </GridView>
-        </ListView.View>
-    </ListView>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid with proper dynamic header binding -->
+        <DataGrid Grid.Column="0" Grid.ColumnSpan="3" 
+                 Grid.Row="1"
+                 ItemsSource="{Binding PlayerStats}"
+                 AutoGenerateColumns="False"
+                 Margin="20"
+                 HorizontalAlignment="Stretch">
+            <DataGrid.Resources>
+                <TextBlock x:Key="PlayerColumnHeader"                  
+                           Text="{DynamicResource Player}"
+                           TextWrapping="Wrap" />
+                <TextBlock x:Key="WinsColumnHeader"                  
+                           Text="{DynamicResource GamesWon}"
+                           TextWrapping="Wrap" />
+                <TextBlock x:Key="LosesColumnHeader"                  
+                           Text="{DynamicResource GamesLost}"
+                           TextWrapping="Wrap" />
+                <TextBlock x:Key="DrawsColumnHeader"                  
+                           Text="{DynamicResource GamesDraw}"
+                           TextWrapping="Wrap" />
+
+            </DataGrid.Resources> 
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{StaticResource PlayerColumnHeader}"
+                                    Binding="{Binding PlayerName}" 
+                                    Width="*"/>
+                <DataGridTextColumn Header="{StaticResource WinsColumnHeader}" 
+                                  Binding="{Binding Wins}" 
+                                  Width="*"/>
+                <DataGridTextColumn Header="{StaticResource LosesColumnHeader}" 
+                                  Binding="{Binding Losses}" 
+                                  Width="*"/>
+                <DataGridTextColumn Header="{StaticResource DrawsColumnHeader}"
+                                  Binding="{Binding Draws}" 
+                                  Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Button Grid.Row="2" Grid.Column="1" 
+              HorizontalAlignment="Center" 
+              Margin="0,10,0,20"
+              Content="{DynamicResource GoBack}" 
+              Command="{Binding GoBackCommand}"/>
+    </Grid>
 </UserControl>

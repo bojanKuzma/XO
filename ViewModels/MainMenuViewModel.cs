@@ -38,6 +38,6 @@ public class MainMenuViewModel : BaseViewModel
     private void ShowScores()
     {
         _navigationStore.CurrentViewModel?.Dispose();
-        _navigationStore.CurrentViewModel = new ScoresViewModel();
+        _navigationStore.CurrentViewModel = new ScoresViewModel(_navigationStore, _languageStore);
     }
 }

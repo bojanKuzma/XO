@@ -175,7 +175,7 @@ public class GameViewModel : BaseViewModel
             CheckForWinner();
 
             // If single player mode and it's AI's turn, make AI move
-            if (IsSinglePlayer && !IsPlayer1Turn) 
+            if (IsSinglePlayer && !IsPlayer1Turn && !IsCelebrating)
                 await MakeAIMove();
         }
         finally
@@ -257,6 +257,13 @@ public class GameViewModel : BaseViewModel
         {
             return;
         }
+        if (winner == "X")
+            StatisticsService.RecordGameResult(Player1Name, Player2Name);
+        else if (winner == "O")
+            StatisticsService.RecordGameResult(Player2Name, Player1Name);
+        else StatisticsService.RecordGameResult(Player1Name, Player2Name, isDraw: true);
+            
+
 
         if (_languageStore.CurrentLanguage == "en")
         {

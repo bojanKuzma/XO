@@ -10,4 +10,9 @@
     <system:String x:Key="Player1Name">Player 1 name</system:String>
     <system:String x:Key="Player2Name">Player 1 name</system:String>
     <system:String x:Key="StartGame">Start game</system:String>
+    <system:String x:Key="GamesWon">Wins</system:String>
+    <system:String x:Key="GamesLost">Loses</system:String>
+    <system:String x:Key="GamesDraw">Draws</system:String>
+    <system:String x:Key="Player">Player</system:String>
+    <system:String x:Key="GoBack">Back</system:String>
 </ResourceDictionary>
