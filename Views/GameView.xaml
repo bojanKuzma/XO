@@ -58,7 +58,8 @@
 
             <!-- Start Game Button -->
             <Button Grid.Column="1" Grid.Row="3" Content="{DynamicResource StartGame}" Command="{Binding StartGameCommand}" Width="200"
-                    Margin="10" />
+                    Margin="10" 
+                    Foreground="White"/>
 
         </Grid>
 
@@ -116,6 +117,7 @@
                 <Button Grid.Row="0" Grid.Column="0"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="0"
+                        Foreground="White"
                         Content="{Binding Board[0]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -130,6 +132,7 @@
                 <Button Grid.Row="0" Grid.Column="1"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="1"
+                        Foreground="White"
                         Content="{Binding Board[1]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -144,6 +147,7 @@
                 <Button Grid.Row="0" Grid.Column="2"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="2"
+                        Foreground="White"
                         Content="{Binding Board[2]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -158,6 +162,7 @@
                 <Button Grid.Row="1" Grid.Column="0"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="3"
+                        Foreground="White"
                         Content="{Binding Board[3]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -170,6 +175,7 @@
                 <Button Grid.Row="1" Grid.Column="1"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="4"
+                        Foreground="White"
                         Content="{Binding Board[4]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -182,6 +188,7 @@
                 <Button Grid.Row="1" Grid.Column="2"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="5"
+                        Foreground="White"
                         Content="{Binding Board[5]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -194,6 +201,7 @@
                 <Button Grid.Row="2" Grid.Column="0"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="6"
+                        Foreground="White"
                         Content="{Binding Board[6]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -206,6 +214,7 @@
                 <Button Grid.Row="2" Grid.Column="1"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="7"
+                        Foreground="White"
                         Content="{Binding Board[7]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -218,6 +227,7 @@
                 <Button Grid.Row="2" Grid.Column="2"
                         Command="{Binding CellClickCommand}"
                         CommandParameter="8"
+                        Foreground="White"
                         Content="{Binding Board[8]}"
                         IsEnabled="{Binding IsProcessingMove, Converter={StaticResource InverseBooleanConverter}}"
                         FontSize="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource FontSizeConverter}}"
@@ -238,6 +248,7 @@
                 <Button Grid.Column="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
+                        Foreground="White"
                         Command="{Binding ResetCommand}"
                         CommandParameter="0"
                         Content="{DynamicResource Reset}"
@@ -250,6 +261,7 @@
                 <Button Grid.Column="2"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
+                        Foreground="White"
                         Command="{Binding GiveUpCommand}"
                         CommandParameter="0"
                         Content="{DynamicResource GiveUp}"

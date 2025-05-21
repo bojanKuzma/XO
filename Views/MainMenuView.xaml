@@ -28,11 +28,13 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="20"
+                        Foreground="White"
                         FontWeight="Bold"
                         Margin="10" VerticalAlignment="Stretch" MaxWidth="600" MinHeight="100" MaxHeight="100"/>
                 <Button Grid.Row="1" Content="{DynamicResource 2Player}" Command="{Binding StartTwoPlayerGameCommand}"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
+                        Foreground="White"
                         FontSize="20"
                         FontWeight="Bold"
                         Margin="10" VerticalAlignment="Stretch" MaxWidth="600" MinHeight="100"/>
@@ -41,6 +43,7 @@
                         VerticalContentAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
+                        Foreground="White"
                         Command="{Binding ShowScoresCommand}"
                         Margin="10" VerticalAlignment="Stretch" MaxWidth="600" MinHeight="100"/>
             </Grid>
